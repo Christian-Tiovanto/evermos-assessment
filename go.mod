@@ -12,8 +12,10 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/planetscale/vtprotobuf v0.6.1-0.20240319094008-0393e58bdf10
 	github.com/rabbitmq/amqp091-go v1.10.0
+	github.com/rookie-ninja/rk-entry/v2 v2.2.20
 	github.com/rookie-ninja/rk-grpc/v2 v2.2.22
 	github.com/stretchr/testify v1.8.4
+	go.uber.org/zap v1.25.0
 	golang.org/x/crypto v0.28.0
 	google.golang.org/genproto/googleapis/api v0.0.0-20241015192408-796eee8c2d53
 	google.golang.org/grpc v1.67.1
@@ -50,7 +52,6 @@ require (
 	github.com/prometheus/common v0.44.0 // indirect
 	github.com/prometheus/procfs v0.11.1 // indirect
 	github.com/rogpeppe/go-internal v1.13.1 // indirect
-	github.com/rookie-ninja/rk-entry/v2 v2.2.20 // indirect
 	github.com/rookie-ninja/rk-logger v1.2.13 // indirect
 	github.com/rookie-ninja/rk-query v1.2.14 // indirect
 	github.com/rs/cors v1.7.0 // indirect
@@ -76,7 +77,6 @@ require (
 	go.uber.org/atomic v1.11.0 // indirect
 	go.uber.org/multierr v1.10.0 // indirect
 	go.uber.org/ratelimit v0.3.0 // indirect
-	go.uber.org/zap v1.25.0 // indirect
 	golang.org/x/exp v0.0.0-20230905200255-921286631fa9 // indirect
 	golang.org/x/net v0.30.0 // indirect
 	golang.org/x/sync v0.8.0 // indirect

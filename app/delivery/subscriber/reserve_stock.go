@@ -3,9 +3,13 @@ package subscriber
 import (
 	"context"
 	"encoding/json"
+	"fmt"
+
+	"go.uber.org/zap"
 
 	database "github.com/mughieams/evermos-assessment/app/common/dependencies/postgresql"
 	"github.com/mughieams/evermos-assessment/app/common/dependencies/rabbitmq"
+	"github.com/mughieams/evermos-assessment/app/common/log"
 	dbgen "github.com/mughieams/evermos-assessment/app/repository/postgresql/db"
 	"github.com/mughieams/evermos-assessment/app/usecase/warehouse"
 	proto "github.com/mughieams/evermos-assessment/protobuf/api"
@@ -38,14 +42,26 @@ func (s *ReserveStockSubscriber) Listen() error {
 
 // Execute is a method to execute the message
 func (s *ReserveStockSubscriber) Execute(msg []byte) {
+	logger := log.FromContext(context.Background()).With(
+		zap.String("service", "ReserveStockSubscriber.Execute"),
+	)
+
 	var payload proto.UpdateProductStockRequest
 	if err := json.Unmarshal(msg, &payload); err != nil {
+		logger.Error("failed to unmarshal message", zap.Error(err))
+		logger.Error(
+			fmt.Sprintf("%s: %s", UnmarshallError, err.Error()),
+			zap.String("error", err.Error()),
+			zap.Stack("stacktrace"),
+		)
 		return
 	}
 
-	_ = s.warehouse.ReserveProductStock(context.Background(), warehouse.UpdateProductStockParams{
+	if errSvc := s.warehouse.ReserveProductStock(context.Background(), warehouse.UpdateProductStockParams{
 		WarehouseID: payload.WarehouseId,
 		ProductID:   payload.ProductId,
 		Quantity:    payload.Quantity,
-	})
+	}); errSvc != nil {
+		logger.Error("failed to release stock", zap.Error(errSvc))
+	}
 }
