@@ -1,0 +1,13 @@
+*.env*
+.idea
+.DS_Store
+.go-version
+.vscode
+
+_note/
+deploy/
+vendor/
+
+coverage.html
+coverage.out
+cred.json
