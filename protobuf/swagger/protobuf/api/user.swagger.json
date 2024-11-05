@@ -1,0 +1,125 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "protobuf/api/user.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "mughieams.evermosassessment.v1.UserService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/users": {
+      "post": {
+        "operationId": "Register",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mughieams.evermosassessment.v1.MessageResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/mughieams.evermosassessment.v1.RegisterRequest"
+            }
+          }
+        ],
+        "tags": [
+          "mughieams.evermosassessment.v1.UserService"
+        ]
+      }
+    },
+    "/v1/users/login": {
+      "post": {
+        "operationId": "Login",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mughieams.evermosassessment.v1.LoginResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/mughieams.evermosassessment.v1.LoginRequest"
+            }
+          }
+        ],
+        "tags": [
+          "mughieams.evermosassessment.v1.UserService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "mughieams.evermosassessment.v1.LoginRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "password"
+      ]
+    },
+    "mughieams.evermosassessment.v1.LoginResponse": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "mughieams.evermosassessment.v1.MessageResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "mughieams.evermosassessment.v1.RegisterRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

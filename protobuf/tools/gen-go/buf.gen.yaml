@@ -1,0 +1,26 @@
+version: v1
+plugins:
+  - plugin: go
+    out: .
+    opt:
+      - paths=source_relative
+  - plugin: go-grpc
+    out: .
+    opt:
+      - paths=source_relative
+  - name: go-vtproto
+    out: .
+    opt:
+      - paths=source_relative,features=marshal+unmarshal+size
+  - name: validate
+    out: .
+    opt:
+      - paths=source_relative
+      - lang=go
+  - name: grpc-gateway
+    out: .
+    opt:
+      - paths=source_relative
+      - generate_unbound_methods=true
+      - allow_repeated_fields_in_body=true
+      - allow_delete_body=true

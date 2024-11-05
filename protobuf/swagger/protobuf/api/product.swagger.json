@@ -1,0 +1,81 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "protobuf/api/product.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "mughieams.evermosassessment.v1.ProductService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/products": {
+      "get": {
+        "operationId": "GetProducts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mughieams.evermosassessment.v1.GetProductsResponse"
+            }
+          }
+        },
+        "tags": [
+          "mughieams.evermosassessment.v1.ProductService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "mughieams.evermosassessment.v1.GetProductsResponse": {
+      "type": "object",
+      "properties": {
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/mughieams.evermosassessment.v1.Product"
+          }
+        }
+      }
+    },
+    "mughieams.evermosassessment.v1.Product": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number",
+          "format": "float"
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "shopId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "warehouseId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    }
+  }
+}

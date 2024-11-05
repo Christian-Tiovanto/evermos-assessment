@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package mughieams.evermosassessment.v1;
+
+import "google/api/field_behavior.proto";
+
+option go_package = "github.com/mughieams/evermos-assessment/protobuf/api;commerce_api";
+
+message MessageResponse {
+  string message = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+}

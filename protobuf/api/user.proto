@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package mughieams.evermosassessment.v1;
+
+import "google/api/annotations.proto";
+import "google/api/field_behavior.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+import "protobuf/api/common.proto";
+
+option go_package = "github.com/mughieams/evermos-assessment/protobuf/api;commerce_api";
+
+service UserService {
+  rpc Register(RegisterRequest) returns (MessageResponse) {
+    option (google.api.http) = {
+      post: "/v1/users"
+      body: "*"
+    };
+  }
+
+  rpc Login(LoginRequest) returns (LoginResponse) {
+    option (google.api.http) = {
+      post: "/v1/users/login"
+      body: "*"
+    };
+  }
+}
+
+message RegisterRequest {
+  string name = 1;
+  string email = 2;
+  string phone = 3;
+  string password = 4;
+}
+
+message LoginRequest {
+  string email = 1;
+  string phone = 2;
+  string password = 3 [(google.api.field_behavior) = REQUIRED];
+}
+
+message LoginResponse {
+  string token = 1;
+}

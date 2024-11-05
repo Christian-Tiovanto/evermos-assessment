@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package mughieams.evermosassessment.v1;
+
+import "google/api/annotations.proto";
+import "google/api/field_behavior.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+import "protobuf/api/common.proto";
+import "protobuf/api/product.proto";
+
+option go_package = "github.com/mughieams/evermos-assessment/protobuf/api;commerce_api";
+
+service ShopService {
+  rpc CreateShop(CreateShopRequest) returns (MessageResponse) {
+    option (google.api.http) = {
+      post: "/v1/shops"
+      body: "*"
+    };
+  }
+
+  rpc CreateWarehouse(CreateWarehouseRequest) returns (MessageResponse) {
+    option (google.api.http) = {
+      post: "/v1/shops/{shop_id}/warehouses"
+      body: "*"
+    };
+  }
+
+  rpc GetWarehouses(ShopIDRequest) returns (GetWarehousesResponse) {
+    option (google.api.http) = {get: "/v1/shops/{shop_id}/warehouses"};
+  }
+
+  rpc AddProduct(AddProductRequest) returns (MessageResponse) {
+    option (google.api.http) = {
+      post: "/v1/shops/{shop_id}/warehouses/{warehouse_id}/products"
+      body: "*"
+    };
+  }
+
+  rpc GetProducts(ShopIDRequest) returns (GetProductsResponse) {
+    option (google.api.http) = {get: "/v1/shops/{shop_id}/products"};
+  }
+}
+
+message CreateShopRequest {
+  string name = 1;
+  string address = 2;
+}
+
+message CreateWarehouseRequest {
+  int64 shop_id = 1;
+  string name = 2;
+}
+
+message ShopIDRequest {
+  int64 shop_id = 1;
+}
+
+message Warehouse {
+  int64 id = 1;
+  string name = 2;
+  bool status = 3;
+  int64 shop_id = 4;
+}
+
+message GetWarehousesResponse {
+  repeated Warehouse warehouses = 1;
+}
+
+message AddProductRequest {
+  int64 shop_id = 1;
+  int64 warehouse_id = 2;
+  string name = 3;
+  string description = 4;
+  float price = 5;
+  int32 quantity = 6;
+}

@@ -1,0 +1,290 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "protobuf/api/shop.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "mughieams.evermosassessment.v1.ShopService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/shops": {
+      "post": {
+        "operationId": "CreateShop",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mughieams.evermosassessment.v1.MessageResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/mughieams.evermosassessment.v1.CreateShopRequest"
+            }
+          }
+        ],
+        "tags": [
+          "mughieams.evermosassessment.v1.ShopService"
+        ]
+      }
+    },
+    "/v1/shops/{shopId}/products": {
+      "get": {
+        "operationId": "GetProducts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mughieams.evermosassessment.v1.GetProductsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shopId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "mughieams.evermosassessment.v1.ShopService"
+        ]
+      }
+    },
+    "/v1/shops/{shopId}/warehouses": {
+      "get": {
+        "operationId": "GetWarehouses",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mughieams.evermosassessment.v1.GetWarehousesResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shopId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "mughieams.evermosassessment.v1.ShopService"
+        ]
+      },
+      "post": {
+        "operationId": "CreateWarehouse",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mughieams.evermosassessment.v1.MessageResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shopId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/mughieams.evermosassessment.v1.ShopService.CreateWarehouseBody"
+            }
+          }
+        ],
+        "tags": [
+          "mughieams.evermosassessment.v1.ShopService"
+        ]
+      }
+    },
+    "/v1/shops/{shopId}/warehouses/{warehouseId}/products": {
+      "post": {
+        "operationId": "AddProduct",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mughieams.evermosassessment.v1.MessageResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shopId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "warehouseId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/mughieams.evermosassessment.v1.ShopService.AddProductBody"
+            }
+          }
+        ],
+        "tags": [
+          "mughieams.evermosassessment.v1.ShopService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "mughieams.evermosassessment.v1.CreateShopRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        }
+      }
+    },
+    "mughieams.evermosassessment.v1.GetProductsResponse": {
+      "type": "object",
+      "properties": {
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/mughieams.evermosassessment.v1.Product"
+          }
+        }
+      }
+    },
+    "mughieams.evermosassessment.v1.GetWarehousesResponse": {
+      "type": "object",
+      "properties": {
+        "warehouses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/mughieams.evermosassessment.v1.Warehouse"
+          }
+        }
+      }
+    },
+    "mughieams.evermosassessment.v1.MessageResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "mughieams.evermosassessment.v1.Product": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number",
+          "format": "float"
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "shopId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "warehouseId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "mughieams.evermosassessment.v1.ShopService.AddProductBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number",
+          "format": "float"
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "mughieams.evermosassessment.v1.ShopService.CreateWarehouseBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "mughieams.evermosassessment.v1.Warehouse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "boolean"
+        },
+        "shopId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "protobuf/api/order.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "mughieams.evermosassessment.v1.OrderService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/orders": {
+      "post": {
+        "operationId": "CheckoutOrder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mughieams.evermosassessment.v1.MessageResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/mughieams.evermosassessment.v1.CheckoutOrderRequest"
+            }
+          }
+        ],
+        "tags": [
+          "mughieams.evermosassessment.v1.OrderService"
+        ]
+      }
+    },
+    "/v1/orders/{orderId}/cancel": {
+      "post": {
+        "operationId": "CancelOrder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mughieams.evermosassessment.v1.MessageResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "mughieams.evermosassessment.v1.OrderService"
+        ]
+      }
+    },
+    "/v1/orders/{orderId}/confirm": {
+      "post": {
+        "operationId": "ConfirmOrder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mughieams.evermosassessment.v1.MessageResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "mughieams.evermosassessment.v1.OrderService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "mughieams.evermosassessment.v1.CheckoutOrderRequest": {
+      "type": "object",
+      "properties": {
+        "shopId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "warehouseId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "productId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "mughieams.evermosassessment.v1.MessageResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    }
+  }
+}
