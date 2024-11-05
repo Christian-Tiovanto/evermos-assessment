@@ -29,11 +29,11 @@ test.cleancache:
 	go clean -testcache
 
 .PHONY: mock
-mockgen:
+mock:
 	bin/mock.sh
 
 .PHONY: mock.partial
-mockgen.partial:
+mock.partial:
 	bin/mock-partial.sh
 
 .PHONY: test.unit
