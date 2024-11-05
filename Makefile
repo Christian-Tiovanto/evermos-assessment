@@ -28,6 +28,14 @@ pretty: tidy format lint
 test.cleancache:
 	go clean -testcache
 
+.PHONY: mock
+mockgen:
+	bin/mock.sh
+
+.PHONY: mock.partial
+mockgen.partial:
+	bin/mock-partial.sh
+
 .PHONY: migration
 migration:
 	dbmate -d ./db/migrations new $(name)
@@ -59,3 +67,7 @@ generate: generate.proto generate.swagger
 sqlc:
 	sqlc generate
 	goimports -w -local github.com/mughieams/evermos-assessment app/repository/postgresql/db
+
+.PHONY: run
+run:
+	go run cmd/server/main.go
