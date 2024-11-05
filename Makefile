@@ -36,6 +36,16 @@ mockgen:
 mockgen.partial:
 	bin/mock-partial.sh
 
+.PHONY: test.unit
+test.unit: test.cleancache
+	go test -race ./...
+
+.PHONY: test.cover
+test.cover: test.cleancache
+	go test -v -race ./... -coverprofile=coverage.out
+	go tool cover -html=coverage.out -o coverage.html
+	go tool cover -func coverage.out
+
 .PHONY: migration
 migration:
 	dbmate -d ./db/migrations new $(name)
