@@ -1,5 +1,4 @@
 # Evermos Backend Assessment
----
 
 ## Task 1
 
@@ -26,6 +25,7 @@ During the 12.12 event (flash-sale), customers experienced order cancellations d
 - Refer to this `protobuf/swagger/protobuf/api/` directory to see API Request and Response.
 
 ---
+
 ## Task 2
 
 Run the following command:
