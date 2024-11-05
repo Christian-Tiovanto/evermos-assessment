@@ -39,8 +39,6 @@ type Warehouse struct {
 
 // Usecase defines the warehouse usecase interface
 type Usecase interface {
-	UpdateStatus(ctx context.Context, id int64, status Status) *errors.Error
-	TransferProduct(ctx context.Context, arg TransferProductParams) *errors.Error
 	UpdateProductStock(ctx context.Context, arg UpdateProductStockParams) *errors.Error
 	ReserveProductStock(ctx context.Context, arg UpdateProductStockParams) *errors.Error
 	ReleaseProductStock(ctx context.Context, arg UpdateProductStockParams) *errors.Error
@@ -49,7 +47,6 @@ type Usecase interface {
 // Repository defines repository interface for warehouse usecase
 type Repository interface {
 	WithTx(tx pgx.Tx) *dbgen.Queries
-	UpdateWarehouseStatus(ctx context.Context, arg dbgen.UpdateWarehouseStatusParams) error
 	IncreaseStock(ctx context.Context, arg dbgen.IncreaseStockParams) (int64, error)
 	DecreaseStock(ctx context.Context, arg dbgen.DecreaseStockParams) (int64, error)
 	UpdateProductStock(ctx context.Context, arg dbgen.UpdateProductStockParams) error

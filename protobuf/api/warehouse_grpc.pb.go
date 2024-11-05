@@ -20,19 +20,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	WarehouseService_ActivateWarehouse_FullMethodName   = "/mughieams.evermosassessment.v1.WarehouseService/ActivateWarehouse"
-	WarehouseService_DeactivateWarehouse_FullMethodName = "/mughieams.evermosassessment.v1.WarehouseService/DeactivateWarehouse"
-	WarehouseService_TransferProduct_FullMethodName     = "/mughieams.evermosassessment.v1.WarehouseService/TransferProduct"
-	WarehouseService_UpdateProductStock_FullMethodName  = "/mughieams.evermosassessment.v1.WarehouseService/UpdateProductStock"
+	WarehouseService_UpdateProductStock_FullMethodName = "/mughieams.evermosassessment.v1.WarehouseService/UpdateProductStock"
 )
 
 // WarehouseServiceClient is the client API for WarehouseService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type WarehouseServiceClient interface {
-	ActivateWarehouse(ctx context.Context, in *WarehouseIDRequest, opts ...grpc.CallOption) (*MessageResponse, error)
-	DeactivateWarehouse(ctx context.Context, in *WarehouseIDRequest, opts ...grpc.CallOption) (*MessageResponse, error)
-	TransferProduct(ctx context.Context, in *TransferProductRequest, opts ...grpc.CallOption) (*MessageResponse, error)
 	UpdateProductStock(ctx context.Context, in *UpdateProductStockRequest, opts ...grpc.CallOption) (*MessageResponse, error)
 }
 
@@ -42,36 +36,6 @@ type warehouseServiceClient struct {
 
 func NewWarehouseServiceClient(cc grpc.ClientConnInterface) WarehouseServiceClient {
 	return &warehouseServiceClient{cc}
-}
-
-func (c *warehouseServiceClient) ActivateWarehouse(ctx context.Context, in *WarehouseIDRequest, opts ...grpc.CallOption) (*MessageResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(MessageResponse)
-	err := c.cc.Invoke(ctx, WarehouseService_ActivateWarehouse_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *warehouseServiceClient) DeactivateWarehouse(ctx context.Context, in *WarehouseIDRequest, opts ...grpc.CallOption) (*MessageResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(MessageResponse)
-	err := c.cc.Invoke(ctx, WarehouseService_DeactivateWarehouse_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *warehouseServiceClient) TransferProduct(ctx context.Context, in *TransferProductRequest, opts ...grpc.CallOption) (*MessageResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(MessageResponse)
-	err := c.cc.Invoke(ctx, WarehouseService_TransferProduct_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *warehouseServiceClient) UpdateProductStock(ctx context.Context, in *UpdateProductStockRequest, opts ...grpc.CallOption) (*MessageResponse, error) {
@@ -88,9 +52,6 @@ func (c *warehouseServiceClient) UpdateProductStock(ctx context.Context, in *Upd
 // All implementations must embed UnimplementedWarehouseServiceServer
 // for forward compatibility.
 type WarehouseServiceServer interface {
-	ActivateWarehouse(context.Context, *WarehouseIDRequest) (*MessageResponse, error)
-	DeactivateWarehouse(context.Context, *WarehouseIDRequest) (*MessageResponse, error)
-	TransferProduct(context.Context, *TransferProductRequest) (*MessageResponse, error)
 	UpdateProductStock(context.Context, *UpdateProductStockRequest) (*MessageResponse, error)
 	mustEmbedUnimplementedWarehouseServiceServer()
 }
@@ -102,15 +63,6 @@ type WarehouseServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedWarehouseServiceServer struct{}
 
-func (UnimplementedWarehouseServiceServer) ActivateWarehouse(context.Context, *WarehouseIDRequest) (*MessageResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ActivateWarehouse not implemented")
-}
-func (UnimplementedWarehouseServiceServer) DeactivateWarehouse(context.Context, *WarehouseIDRequest) (*MessageResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeactivateWarehouse not implemented")
-}
-func (UnimplementedWarehouseServiceServer) TransferProduct(context.Context, *TransferProductRequest) (*MessageResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TransferProduct not implemented")
-}
 func (UnimplementedWarehouseServiceServer) UpdateProductStock(context.Context, *UpdateProductStockRequest) (*MessageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateProductStock not implemented")
 }
@@ -133,60 +85,6 @@ func RegisterWarehouseServiceServer(s grpc.ServiceRegistrar, srv WarehouseServic
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&WarehouseService_ServiceDesc, srv)
-}
-
-func _WarehouseService_ActivateWarehouse_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(WarehouseIDRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(WarehouseServiceServer).ActivateWarehouse(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: WarehouseService_ActivateWarehouse_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WarehouseServiceServer).ActivateWarehouse(ctx, req.(*WarehouseIDRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _WarehouseService_DeactivateWarehouse_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(WarehouseIDRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(WarehouseServiceServer).DeactivateWarehouse(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: WarehouseService_DeactivateWarehouse_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WarehouseServiceServer).DeactivateWarehouse(ctx, req.(*WarehouseIDRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _WarehouseService_TransferProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TransferProductRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(WarehouseServiceServer).TransferProduct(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: WarehouseService_TransferProduct_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WarehouseServiceServer).TransferProduct(ctx, req.(*TransferProductRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _WarehouseService_UpdateProductStock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -214,18 +112,6 @@ var WarehouseService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "mughieams.evermosassessment.v1.WarehouseService",
 	HandlerType: (*WarehouseServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "ActivateWarehouse",
-			Handler:    _WarehouseService_ActivateWarehouse_Handler,
-		},
-		{
-			MethodName: "DeactivateWarehouse",
-			Handler:    _WarehouseService_DeactivateWarehouse_Handler,
-		},
-		{
-			MethodName: "TransferProduct",
-			Handler:    _WarehouseService_TransferProduct_Handler,
-		},
 		{
 			MethodName: "UpdateProductStock",
 			Handler:    _WarehouseService_UpdateProductStock_Handler,

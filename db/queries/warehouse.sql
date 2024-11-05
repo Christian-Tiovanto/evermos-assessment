@@ -5,9 +5,6 @@ VALUES (@shop_id, @name, @address);
 -- name: GetWarehousesByShopID :many
 SELECT w.id, w.name, w.status, w.shop_id FROM warehouses w WHERE w.shop_id = @shop_id;
 
--- name: UpdateWarehouseStatus :exec
-UPDATE warehouses SET status = @status WHERE id = @id;
-
 -- name: AddProductToStock :exec
 INSERT INTO stocks(product_id, warehouse_id, quantity)
 VALUES (@product_id, @warehouse_id, @quantity);

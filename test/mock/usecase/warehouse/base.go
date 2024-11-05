@@ -13,11 +13,11 @@ import (
 	context "context"
 	reflect "reflect"
 
-	v5 "github.com/jackc/pgx/v5"
+	pgx "github.com/jackc/pgx/v5"
 	gomock "go.uber.org/mock/gomock"
 
 	errors "github.com/mughieams/evermos-assessment/app/common/errors"
-	db "github.com/mughieams/evermos-assessment/app/repository/postgresql/db"
+	dbgen "github.com/mughieams/evermos-assessment/app/repository/postgresql/db"
 	warehouse "github.com/mughieams/evermos-assessment/app/usecase/warehouse"
 )
 
@@ -73,20 +73,6 @@ func (mr *MockUsecaseMockRecorder) ReserveProductStock(ctx, arg any) *gomock.Cal
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ReserveProductStock", reflect.TypeOf((*MockUsecase)(nil).ReserveProductStock), ctx, arg)
 }
 
-// TransferProduct mocks base method.
-func (m *MockUsecase) TransferProduct(ctx context.Context, arg warehouse.TransferProductParams) *errors.Error {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "TransferProduct", ctx, arg)
-	ret0, _ := ret[0].(*errors.Error)
-	return ret0
-}
-
-// TransferProduct indicates an expected call of TransferProduct.
-func (mr *MockUsecaseMockRecorder) TransferProduct(ctx, arg any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TransferProduct", reflect.TypeOf((*MockUsecase)(nil).TransferProduct), ctx, arg)
-}
-
 // UpdateProductStock mocks base method.
 func (m *MockUsecase) UpdateProductStock(ctx context.Context, arg warehouse.UpdateProductStockParams) *errors.Error {
 	m.ctrl.T.Helper()
@@ -99,20 +85,6 @@ func (m *MockUsecase) UpdateProductStock(ctx context.Context, arg warehouse.Upda
 func (mr *MockUsecaseMockRecorder) UpdateProductStock(ctx, arg any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateProductStock", reflect.TypeOf((*MockUsecase)(nil).UpdateProductStock), ctx, arg)
-}
-
-// UpdateStatus mocks base method.
-func (m *MockUsecase) UpdateStatus(ctx context.Context, id int64, status warehouse.Status) *errors.Error {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "UpdateStatus", ctx, id, status)
-	ret0, _ := ret[0].(*errors.Error)
-	return ret0
-}
-
-// UpdateStatus indicates an expected call of UpdateStatus.
-func (mr *MockUsecaseMockRecorder) UpdateStatus(ctx, id, status any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateStatus", reflect.TypeOf((*MockUsecase)(nil).UpdateStatus), ctx, id, status)
 }
 
 // MockRepository is a mock of Repository interface.
@@ -140,7 +112,7 @@ func (m *MockRepository) EXPECT() *MockRepositoryMockRecorder {
 }
 
 // DecreaseStock mocks base method.
-func (m *MockRepository) DecreaseStock(ctx context.Context, arg db.DecreaseStockParams) (int64, error) {
+func (m *MockRepository) DecreaseStock(ctx context.Context, arg dbgen.DecreaseStockParams) (int64, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "DecreaseStock", ctx, arg)
 	ret0, _ := ret[0].(int64)
@@ -155,7 +127,7 @@ func (mr *MockRepositoryMockRecorder) DecreaseStock(ctx, arg any) *gomock.Call {
 }
 
 // IncreaseStock mocks base method.
-func (m *MockRepository) IncreaseStock(ctx context.Context, arg db.IncreaseStockParams) (int64, error) {
+func (m *MockRepository) IncreaseStock(ctx context.Context, arg dbgen.IncreaseStockParams) (int64, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "IncreaseStock", ctx, arg)
 	ret0, _ := ret[0].(int64)
@@ -170,7 +142,7 @@ func (mr *MockRepositoryMockRecorder) IncreaseStock(ctx, arg any) *gomock.Call {
 }
 
 // ReserveStock mocks base method.
-func (m *MockRepository) ReserveStock(ctx context.Context, arg db.ReserveStockParams) error {
+func (m *MockRepository) ReserveStock(ctx context.Context, arg dbgen.ReserveStockParams) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "ReserveStock", ctx, arg)
 	ret0, _ := ret[0].(error)
@@ -184,7 +156,7 @@ func (mr *MockRepositoryMockRecorder) ReserveStock(ctx, arg any) *gomock.Call {
 }
 
 // UpdateProductStock mocks base method.
-func (m *MockRepository) UpdateProductStock(ctx context.Context, arg db.UpdateProductStockParams) error {
+func (m *MockRepository) UpdateProductStock(ctx context.Context, arg dbgen.UpdateProductStockParams) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "UpdateProductStock", ctx, arg)
 	ret0, _ := ret[0].(error)
@@ -197,25 +169,11 @@ func (mr *MockRepositoryMockRecorder) UpdateProductStock(ctx, arg any) *gomock.C
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateProductStock", reflect.TypeOf((*MockRepository)(nil).UpdateProductStock), ctx, arg)
 }
 
-// UpdateWarehouseStatus mocks base method.
-func (m *MockRepository) UpdateWarehouseStatus(ctx context.Context, arg db.UpdateWarehouseStatusParams) error {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "UpdateWarehouseStatus", ctx, arg)
-	ret0, _ := ret[0].(error)
-	return ret0
-}
-
-// UpdateWarehouseStatus indicates an expected call of UpdateWarehouseStatus.
-func (mr *MockRepositoryMockRecorder) UpdateWarehouseStatus(ctx, arg any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateWarehouseStatus", reflect.TypeOf((*MockRepository)(nil).UpdateWarehouseStatus), ctx, arg)
-}
-
 // WithTx mocks base method.
-func (m *MockRepository) WithTx(tx v5.Tx) *db.Queries {
+func (m *MockRepository) WithTx(tx pgx.Tx) *dbgen.Queries {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "WithTx", tx)
-	ret0, _ := ret[0].(*db.Queries)
+	ret0, _ := ret[0].(*dbgen.Queries)
 	return ret0
 }
 

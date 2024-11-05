@@ -16,82 +16,6 @@
     "application/json"
   ],
   "paths": {
-    "/v1/warehouses/transfer": {
-      "post": {
-        "operationId": "TransferProduct",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/mughieams.evermosassessment.v1.MessageResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/mughieams.evermosassessment.v1.TransferProductRequest"
-            }
-          }
-        ],
-        "tags": [
-          "mughieams.evermosassessment.v1.WarehouseService"
-        ]
-      }
-    },
-    "/v1/warehouses/{warehouseId}/activate": {
-      "put": {
-        "operationId": "ActivateWarehouse",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/mughieams.evermosassessment.v1.MessageResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "warehouseId",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "mughieams.evermosassessment.v1.WarehouseService"
-        ]
-      }
-    },
-    "/v1/warehouses/{warehouseId}/deactivate": {
-      "put": {
-        "operationId": "DeactivateWarehouse",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/mughieams.evermosassessment.v1.MessageResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "warehouseId",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "mughieams.evermosassessment.v1.WarehouseService"
-        ]
-      }
-    },
     "/v1/warehouses/{warehouseId}/products/{productId}": {
       "put": {
         "operationId": "UpdateProductStock",
@@ -140,27 +64,6 @@
         "message": {
           "type": "string",
           "readOnly": true
-        }
-      }
-    },
-    "mughieams.evermosassessment.v1.TransferProductRequest": {
-      "type": "object",
-      "properties": {
-        "productId": {
-          "type": "string",
-          "format": "int64"
-        },
-        "quantity": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "fromWarehouseId": {
-          "type": "string",
-          "format": "int64"
-        },
-        "toWarehouseId": {
-          "type": "string",
-          "format": "int64"
         }
       }
     },

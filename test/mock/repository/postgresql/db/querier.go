@@ -15,7 +15,7 @@ import (
 
 	gomock "go.uber.org/mock/gomock"
 
-	db "github.com/mughieams/evermos-assessment/app/repository/postgresql/db"
+	dbgen "github.com/mughieams/evermos-assessment/app/repository/postgresql/db"
 )
 
 // MockQuerier is a mock of Querier interface.
@@ -43,7 +43,7 @@ func (m *MockQuerier) EXPECT() *MockQuerierMockRecorder {
 }
 
 // AddProduct mocks base method.
-func (m *MockQuerier) AddProduct(ctx context.Context, arg db.AddProductParams) (int64, error) {
+func (m *MockQuerier) AddProduct(ctx context.Context, arg dbgen.AddProductParams) (int64, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "AddProduct", ctx, arg)
 	ret0, _ := ret[0].(int64)
@@ -58,7 +58,7 @@ func (mr *MockQuerierMockRecorder) AddProduct(ctx, arg any) *gomock.Call {
 }
 
 // AddProductToStock mocks base method.
-func (m *MockQuerier) AddProductToStock(ctx context.Context, arg db.AddProductToStockParams) error {
+func (m *MockQuerier) AddProductToStock(ctx context.Context, arg dbgen.AddProductToStockParams) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "AddProductToStock", ctx, arg)
 	ret0, _ := ret[0].(error)
@@ -72,7 +72,7 @@ func (mr *MockQuerierMockRecorder) AddProductToStock(ctx, arg any) *gomock.Call 
 }
 
 // CreateOrder mocks base method.
-func (m *MockQuerier) CreateOrder(ctx context.Context, arg db.CreateOrderParams) (int64, error) {
+func (m *MockQuerier) CreateOrder(ctx context.Context, arg dbgen.CreateOrderParams) (int64, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "CreateOrder", ctx, arg)
 	ret0, _ := ret[0].(int64)
@@ -87,7 +87,7 @@ func (mr *MockQuerierMockRecorder) CreateOrder(ctx, arg any) *gomock.Call {
 }
 
 // CreateShop mocks base method.
-func (m *MockQuerier) CreateShop(ctx context.Context, arg db.CreateShopParams) error {
+func (m *MockQuerier) CreateShop(ctx context.Context, arg dbgen.CreateShopParams) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "CreateShop", ctx, arg)
 	ret0, _ := ret[0].(error)
@@ -101,7 +101,7 @@ func (mr *MockQuerierMockRecorder) CreateShop(ctx, arg any) *gomock.Call {
 }
 
 // CreateUser mocks base method.
-func (m *MockQuerier) CreateUser(ctx context.Context, arg db.CreateUserParams) error {
+func (m *MockQuerier) CreateUser(ctx context.Context, arg dbgen.CreateUserParams) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "CreateUser", ctx, arg)
 	ret0, _ := ret[0].(error)
@@ -115,7 +115,7 @@ func (mr *MockQuerierMockRecorder) CreateUser(ctx, arg any) *gomock.Call {
 }
 
 // CreateWarehouse mocks base method.
-func (m *MockQuerier) CreateWarehouse(ctx context.Context, arg db.CreateWarehouseParams) error {
+func (m *MockQuerier) CreateWarehouse(ctx context.Context, arg dbgen.CreateWarehouseParams) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "CreateWarehouse", ctx, arg)
 	ret0, _ := ret[0].(error)
@@ -129,7 +129,7 @@ func (mr *MockQuerierMockRecorder) CreateWarehouse(ctx, arg any) *gomock.Call {
 }
 
 // DecreaseStock mocks base method.
-func (m *MockQuerier) DecreaseStock(ctx context.Context, arg db.DecreaseStockParams) (int64, error) {
+func (m *MockQuerier) DecreaseStock(ctx context.Context, arg dbgen.DecreaseStockParams) (int64, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "DecreaseStock", ctx, arg)
 	ret0, _ := ret[0].(int64)
@@ -144,10 +144,10 @@ func (mr *MockQuerierMockRecorder) DecreaseStock(ctx, arg any) *gomock.Call {
 }
 
 // GetProductByID mocks base method.
-func (m *MockQuerier) GetProductByID(ctx context.Context, id int64) (db.GetProductByIDRow, error) {
+func (m *MockQuerier) GetProductByID(ctx context.Context, id int64) (dbgen.GetProductByIDRow, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetProductByID", ctx, id)
-	ret0, _ := ret[0].(db.GetProductByIDRow)
+	ret0, _ := ret[0].(dbgen.GetProductByIDRow)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -159,10 +159,10 @@ func (mr *MockQuerierMockRecorder) GetProductByID(ctx, id any) *gomock.Call {
 }
 
 // GetProducts mocks base method.
-func (m *MockQuerier) GetProducts(ctx context.Context) ([]db.GetProductsRow, error) {
+func (m *MockQuerier) GetProducts(ctx context.Context) ([]dbgen.GetProductsRow, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetProducts", ctx)
-	ret0, _ := ret[0].([]db.GetProductsRow)
+	ret0, _ := ret[0].([]dbgen.GetProductsRow)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -174,10 +174,10 @@ func (mr *MockQuerierMockRecorder) GetProducts(ctx any) *gomock.Call {
 }
 
 // GetProductsByShopID mocks base method.
-func (m *MockQuerier) GetProductsByShopID(ctx context.Context, shopID int64) ([]db.GetProductsByShopIDRow, error) {
+func (m *MockQuerier) GetProductsByShopID(ctx context.Context, shopID int64) ([]dbgen.GetProductsByShopIDRow, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetProductsByShopID", ctx, shopID)
-	ret0, _ := ret[0].([]db.GetProductsByShopIDRow)
+	ret0, _ := ret[0].([]dbgen.GetProductsByShopIDRow)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -189,10 +189,10 @@ func (mr *MockQuerierMockRecorder) GetProductsByShopID(ctx, shopID any) *gomock.
 }
 
 // GetUserByEmailOrPhone mocks base method.
-func (m *MockQuerier) GetUserByEmailOrPhone(ctx context.Context, arg db.GetUserByEmailOrPhoneParams) (db.Users, error) {
+func (m *MockQuerier) GetUserByEmailOrPhone(ctx context.Context, arg dbgen.GetUserByEmailOrPhoneParams) (dbgen.Users, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetUserByEmailOrPhone", ctx, arg)
-	ret0, _ := ret[0].(db.Users)
+	ret0, _ := ret[0].(dbgen.Users)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -204,10 +204,10 @@ func (mr *MockQuerierMockRecorder) GetUserByEmailOrPhone(ctx, arg any) *gomock.C
 }
 
 // GetWarehousesByShopID mocks base method.
-func (m *MockQuerier) GetWarehousesByShopID(ctx context.Context, shopID int64) ([]db.GetWarehousesByShopIDRow, error) {
+func (m *MockQuerier) GetWarehousesByShopID(ctx context.Context, shopID int64) ([]dbgen.GetWarehousesByShopIDRow, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetWarehousesByShopID", ctx, shopID)
-	ret0, _ := ret[0].([]db.GetWarehousesByShopIDRow)
+	ret0, _ := ret[0].([]dbgen.GetWarehousesByShopIDRow)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -219,7 +219,7 @@ func (mr *MockQuerierMockRecorder) GetWarehousesByShopID(ctx, shopID any) *gomoc
 }
 
 // IncreaseStock mocks base method.
-func (m *MockQuerier) IncreaseStock(ctx context.Context, arg db.IncreaseStockParams) (int64, error) {
+func (m *MockQuerier) IncreaseStock(ctx context.Context, arg dbgen.IncreaseStockParams) (int64, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "IncreaseStock", ctx, arg)
 	ret0, _ := ret[0].(int64)
@@ -234,7 +234,7 @@ func (mr *MockQuerierMockRecorder) IncreaseStock(ctx, arg any) *gomock.Call {
 }
 
 // ReserveStock mocks base method.
-func (m *MockQuerier) ReserveStock(ctx context.Context, arg db.ReserveStockParams) error {
+func (m *MockQuerier) ReserveStock(ctx context.Context, arg dbgen.ReserveStockParams) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "ReserveStock", ctx, arg)
 	ret0, _ := ret[0].(error)
@@ -248,10 +248,10 @@ func (mr *MockQuerierMockRecorder) ReserveStock(ctx, arg any) *gomock.Call {
 }
 
 // UpdateOrderStatus mocks base method.
-func (m *MockQuerier) UpdateOrderStatus(ctx context.Context, arg db.UpdateOrderStatusParams) (db.UpdateOrderStatusRow, error) {
+func (m *MockQuerier) UpdateOrderStatus(ctx context.Context, arg dbgen.UpdateOrderStatusParams) (dbgen.UpdateOrderStatusRow, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "UpdateOrderStatus", ctx, arg)
-	ret0, _ := ret[0].(db.UpdateOrderStatusRow)
+	ret0, _ := ret[0].(dbgen.UpdateOrderStatusRow)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -263,7 +263,7 @@ func (mr *MockQuerierMockRecorder) UpdateOrderStatus(ctx, arg any) *gomock.Call 
 }
 
 // UpdateProductStock mocks base method.
-func (m *MockQuerier) UpdateProductStock(ctx context.Context, arg db.UpdateProductStockParams) error {
+func (m *MockQuerier) UpdateProductStock(ctx context.Context, arg dbgen.UpdateProductStockParams) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "UpdateProductStock", ctx, arg)
 	ret0, _ := ret[0].(error)
@@ -274,18 +274,4 @@ func (m *MockQuerier) UpdateProductStock(ctx context.Context, arg db.UpdateProdu
 func (mr *MockQuerierMockRecorder) UpdateProductStock(ctx, arg any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateProductStock", reflect.TypeOf((*MockQuerier)(nil).UpdateProductStock), ctx, arg)
-}
-
-// UpdateWarehouseStatus mocks base method.
-func (m *MockQuerier) UpdateWarehouseStatus(ctx context.Context, arg db.UpdateWarehouseStatusParams) error {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "UpdateWarehouseStatus", ctx, arg)
-	ret0, _ := ret[0].(error)
-	return ret0
-}
-
-// UpdateWarehouseStatus indicates an expected call of UpdateWarehouseStatus.
-func (mr *MockQuerierMockRecorder) UpdateWarehouseStatus(ctx, arg any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateWarehouseStatus", reflect.TypeOf((*MockQuerier)(nil).UpdateWarehouseStatus), ctx, arg)
 }
