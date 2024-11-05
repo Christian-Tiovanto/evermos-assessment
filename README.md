@@ -1,5 +1,7 @@
 # Evermos Backend Assessment
+---
 
+## Task 1
 ### What happened
 During the 12.12 event (flash-sale), customers experienced order cancellations due to misreported inventory quantities data. This resulted in customer bad reviews.
 
@@ -21,3 +23,25 @@ During the 12.12 event (flash-sale), customers experienced order cancellations d
 
 ### API Documentation
 - Refer to this `protobuf/swagger/protobuf/api/` directory to see API Request and Response.
+
+---
+## Task 2
+Run the following command:
+```
+go run cmd/task/main.go
+```
+
+**Sample Input**
+```
+5
+4
+#.###
+..###
+##.##
+####.
+```
+
+**Sample Output**
+```
+2
+```
