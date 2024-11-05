@@ -14,3 +14,10 @@ During the 12.12 event (flash-sale), customers experienced order cancellations d
   Process where a certain quantity of inventory is reserved for a customer. This prevents the stock from being sold to another customer, ensuring that the order can be fulfilled and guarantee product availability for customers.
 - **Purchase queue**
   Manages the order fulfillment process based on the order in which the purchases were made (First-come, First-served). This ensures that orders are processed in the sequence they were received, preventing inventory issues and order cancellations.
+
+### Developing Guidelines
+- Refer to [this document](./docs/HOW-TO-USE.md) to see project prerequisite and useful command.
+- Refer to [this document](./docs/DEVELOPMENT.md) to see development decision.
+
+### API Documentation
+- Refer to this `protobuf/swagger/protobuf/api/` directory to see API Request and Response.
