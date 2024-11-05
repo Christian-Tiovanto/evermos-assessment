@@ -3,8 +3,9 @@ package main_test
 import (
 	"testing"
 
-	solution "github.com/mughieams/evermos-assessment/cmd/task"
 	"github.com/stretchr/testify/assert"
+
+	solution "github.com/mughieams/evermos-assessment/cmd/task"
 )
 
 func Test_CountLakes(t *testing.T) {

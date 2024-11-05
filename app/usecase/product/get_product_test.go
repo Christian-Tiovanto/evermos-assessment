@@ -4,6 +4,7 @@ import (
 	stderrors "errors"
 
 	"github.com/jackc/pgx/v5"
+
 	"github.com/mughieams/evermos-assessment/app/common/errors"
 	dbgen "github.com/mughieams/evermos-assessment/app/repository/postgresql/db"
 	"github.com/mughieams/evermos-assessment/app/usecase/product"
