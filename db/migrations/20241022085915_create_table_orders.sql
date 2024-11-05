@@ -1,0 +1,16 @@
+-- migrate:up
+CREATE TABLE IF NOT EXISTS orders (
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL REFERENCES users(id),
+    shop_id BIGINT NOT NULL REFERENCES shops(id),
+    status VARCHAR(255) NOT NULL DEFAULT 'PENDING',
+    product_id BIGINT NOT NULL REFERENCES products(id),
+    warehouse_id BIGINT NOT NULL REFERENCES warehouses(id),
+    quantity INT NOT NULL DEFAULT 0,
+    total_price DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- migrate:down
+DROP TABLE IF EXISTS orders;

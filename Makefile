@@ -28,6 +28,22 @@ pretty: tidy format lint
 test.cleancache:
 	go clean -testcache
 
+.PHONY: migration
+migration:
+	dbmate -d ./db/migrations new $(name)
+
+.PHONY: migration.status
+migration.status:
+	dbmate --wait --url $(url) status
+
+.PHONY: migrate
+migrate:
+	dbmate --wait --url $(url) --no-dump-schema migrate --strict -v
+
+.PHONY: rollback
+rollback:
+	dbmate --wait --url $(url) --no-dump-schema rollback -v
+
 .PHONY: generate.proto
 generate.proto:
 	go run github.com/bufbuild/buf/cmd/buf@$(BUF_VERSION) generate --template "protobuf/tools/gen-go/buf.gen.yaml"
@@ -38,3 +54,8 @@ generate.swagger:
 
 .PHONY: generate
 generate: generate.proto generate.swagger
+
+.PHONY: sqlc
+sqlc:
+	sqlc generate
+	goimports -w -local github.com/mughieams/evermos-assessment app/repository/postgresql/db
