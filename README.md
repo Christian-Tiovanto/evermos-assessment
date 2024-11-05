@@ -2,6 +2,7 @@
 ---
 
 ## Task 1
+
 ### What happened
 During the 12.12 event (flash-sale), customers experienced order cancellations due to misreported inventory quantities data. This resulted in customer bad reviews.
 
@@ -26,6 +27,7 @@ During the 12.12 event (flash-sale), customers experienced order cancellations d
 
 ---
 ## Task 2
+
 Run the following command:
 ```
 go run cmd/task/main.go
