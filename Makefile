@@ -64,11 +64,25 @@ rollback:
 
 .PHONY: generate.proto
 generate.proto:
-	go run github.com/bufbuild/buf/cmd/buf@$(BUF_VERSION) generate --template "protobuf/tools/gen-go/buf.gen.yaml"
+ifdef PROTO_PATH
+	go run github.com/bufbuild/buf/cmd/buf@$(BUF_VERSION) generate \
+		--template "protobuf/tools/gen-go/buf.gen.yaml" \
+		--path $(PROTO_PATH)
+else
+	go run github.com/bufbuild/buf/cmd/buf@$(BUF_VERSION) generate \
+		--template "protobuf/tools/gen-go/buf.gen.yaml"
+endif
 
 .PHONY: generate.swagger
 generate.swagger:
-	go run github.com/bufbuild/buf/cmd/buf@$(BUF_VERSION) generate --template "protobuf/tools/gen-openapiv2/buf.gen.yaml"
+ifdef PROTO_PATH
+	go run github.com/bufbuild/buf/cmd/buf@$(BUF_VERSION) generate \
+		--template "protobuf/tools/gen-openapiv2/buf.gen.yaml" \
+		--path $(PROTO_PATH)
+else
+	go run github.com/bufbuild/buf/cmd/buf@$(BUF_VERSION) generate \
+		--template "protobuf/tools/gen-openapiv2/buf.gen.yaml"
+endif
 
 .PHONY: generate
 generate: generate.proto generate.swagger
