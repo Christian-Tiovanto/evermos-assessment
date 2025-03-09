@@ -24,6 +24,10 @@ service UserService {
       body: "*"
     };
   }
+
+  rpc GetUsers(google.protobuf.Empty) returns (GetUsersResponse) {
+    option (google.api.http) = {get: "/v1/users"};
+  }
 }
 
 message RegisterRequest {
@@ -41,4 +45,14 @@ message LoginRequest {
 
 message LoginResponse {
   string token = 1;
+}
+
+message User {
+  int64 id = 1;
+  string email = 2;
+  string phone = 3;
+}
+
+message GetUsersResponse {
+  repeated User users = 1;
 }

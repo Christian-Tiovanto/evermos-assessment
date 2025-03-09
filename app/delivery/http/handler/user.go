@@ -2,6 +2,9 @@ package handler
 
 import (
 	"context"
+	"google.golang.org/protobuf/types/known/emptypb"
+
+	"github.com/mughieams/evermos-assessment/app/common/util"
 
 	usecase "github.com/mughieams/evermos-assessment/app/usecase/user"
 	proto "github.com/mughieams/evermos-assessment/protobuf/api"
@@ -46,4 +49,22 @@ func (server *UserServer) Login(ctx context.Context, req *proto.LoginRequest) (*
 	}
 
 	return &proto.LoginResponse{Token: token}, nil
+}
+
+func (server *UserServer) GetUsers(ctx context.Context, _ *emptypb.Empty) (*proto.GetUsersResponse,error){
+	users, err := server.usecase.GetUsers(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	return &proto.GetUsersResponse{
+		Users: util.SlimMap(users, func(data usecase.User) *proto.User {
+			return &proto.User{
+				Id:          data.ID,
+				Email:        data.Email,
+				Phone: data.Phone,
+			}
+		}),
+	}, nil
+
 }
