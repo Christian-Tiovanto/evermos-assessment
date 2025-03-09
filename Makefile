@@ -89,9 +89,13 @@ generate: generate.proto generate.swagger
 
 .PHONY: sqlc
 sqlc:
+ifdef SQL_FILE
+	sqlc generate -f $(SQL_FILE)
+else
 	sqlc generate
+endif
 	goimports -w -local github.com/mughieams/evermos-assessment app/repository/postgresql/db
-
+	
 .PHONY: run
 run:
 	go run cmd/server/main.go
