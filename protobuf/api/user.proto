@@ -24,6 +24,17 @@ service UserService {
       body: "*"
     };
   }
+
+  rpc GetUsers(google.protobuf.Empty) returns (GetUsersResponse) {
+    option (google.api.http) = {get: "/v1/users"};
+  }
+
+  rpc UpdateUser(UpdateUserRequest) returns (MessageResponse) {
+    option (google.api.http) = {
+      patch: "/v1/users/{id}"
+      body: "*"
+    };
+  }
 }
 
 message RegisterRequest {
@@ -41,4 +52,21 @@ message LoginRequest {
 
 message LoginResponse {
   string token = 1;
+}
+
+message User {
+  int64 id = 1;
+  string email = 2;
+  string phone = 3;
+}
+
+message GetUsersResponse {
+  repeated User users = 1;
+}
+
+message UpdateUserRequest {
+  int64 id = 1;
+  string password = 2;
+  string email = 3;
+  string phone = 4;
 }

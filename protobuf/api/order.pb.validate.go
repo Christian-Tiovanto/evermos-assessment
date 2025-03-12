@@ -79,7 +79,7 @@ type CheckoutOrderRequestMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
 func (m CheckoutOrderRequestMultiError) Error() string {
-	var msgs []string
+	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
 	}
@@ -183,7 +183,7 @@ type OrderIDRequestMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
 func (m OrderIDRequestMultiError) Error() string {
-	var msgs []string
+	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
 	}

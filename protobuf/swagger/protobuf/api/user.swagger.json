@@ -17,6 +17,20 @@
   ],
   "paths": {
     "/v1/users": {
+      "get": {
+        "operationId": "GetUsers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mughieams.evermosassessment.v1.GetUsersResponse"
+            }
+          }
+        },
+        "tags": [
+          "mughieams.evermosassessment.v1.UserService"
+        ]
+      },
       "post": {
         "operationId": "Register",
         "responses": {
@@ -67,9 +81,54 @@
           "mughieams.evermosassessment.v1.UserService"
         ]
       }
+    },
+    "/v1/users/{id}": {
+      "patch": {
+        "operationId": "UpdateUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mughieams.evermosassessment.v1.MessageResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/mughieams.evermosassessment.v1.UserService.UpdateUserBody"
+            }
+          }
+        ],
+        "tags": [
+          "mughieams.evermosassessment.v1.UserService"
+        ]
+      }
     }
   },
   "definitions": {
+    "mughieams.evermosassessment.v1.GetUsersResponse": {
+      "type": "object",
+      "properties": {
+        "users": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/mughieams.evermosassessment.v1.User"
+          }
+        }
+      }
+    },
     "mughieams.evermosassessment.v1.LoginRequest": {
       "type": "object",
       "properties": {
@@ -117,6 +176,35 @@
           "type": "string"
         },
         "password": {
+          "type": "string"
+        }
+      }
+    },
+    "mughieams.evermosassessment.v1.User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        }
+      }
+    },
+    "mughieams.evermosassessment.v1.UserService.UpdateUserBody": {
+      "type": "object",
+      "properties": {
+        "password": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
           "type": "string"
         }
       }
