@@ -75,7 +75,7 @@ type CreateShopRequestMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
 func (m CreateShopRequestMultiError) Error() string {
-	var msgs []string
+	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
 	}
@@ -181,7 +181,7 @@ type CreateWarehouseRequestMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
 func (m CreateWarehouseRequestMultiError) Error() string {
-	var msgs []string
+	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
 	}
@@ -285,7 +285,7 @@ type ShopIDRequestMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
 func (m ShopIDRequestMultiError) Error() string {
-	var msgs []string
+	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
 	}
@@ -392,7 +392,7 @@ type WarehouseMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
 func (m WarehouseMultiError) Error() string {
-	var msgs []string
+	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
 	}
@@ -526,7 +526,7 @@ type GetWarehousesResponseMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
 func (m GetWarehousesResponseMultiError) Error() string {
-	var msgs []string
+	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
 	}
@@ -640,7 +640,7 @@ type AddProductRequestMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
 func (m AddProductRequestMultiError) Error() string {
-	var msgs []string
+	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
 	}

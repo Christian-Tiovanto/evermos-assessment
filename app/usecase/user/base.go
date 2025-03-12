@@ -19,6 +19,7 @@ type Usecase interface {
 	ComparePassword(hashedPassword, password []byte) *errors.Error
 	Login(ctx context.Context, arg LoginParams) (string, *errors.Error)
 	Register(ctx context.Context, arg RegisterParams) *errors.Error
+	UpdateUser(ctx context.Context, arg UpdateUserParams) *errors.Error
 }
 
 // Repository defines repository interface for user usecase
@@ -26,6 +27,7 @@ type Repository interface {
 	GetUsers(ctx context.Context) ([]dbgen.GetUsersRow, error)
 	CreateUser(ctx context.Context, arg dbgen.CreateUserParams) error
 	GetUserByEmailOrPhone(ctx context.Context, arg dbgen.GetUserByEmailOrPhoneParams) (dbgen.Users, error)
+	UpdateUserById(ctx context.Context, arg dbgen.UpdateUserByIdParams) error
 }
 
 type userImpl struct {

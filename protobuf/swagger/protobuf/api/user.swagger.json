@@ -81,6 +81,39 @@
           "mughieams.evermosassessment.v1.UserService"
         ]
       }
+    },
+    "/v1/users/{id}": {
+      "patch": {
+        "operationId": "UpdateUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mughieams.evermosassessment.v1.MessageResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/mughieams.evermosassessment.v1.UserService.UpdateUserBody"
+            }
+          }
+        ],
+        "tags": [
+          "mughieams.evermosassessment.v1.UserService"
+        ]
+      }
     }
   },
   "definitions": {
@@ -153,6 +186,20 @@
         "id": {
           "type": "string",
           "format": "int64"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        }
+      }
+    },
+    "mughieams.evermosassessment.v1.UserService.UpdateUserBody": {
+      "type": "object",
+      "properties": {
+        "password": {
+          "type": "string"
         },
         "email": {
           "type": "string"

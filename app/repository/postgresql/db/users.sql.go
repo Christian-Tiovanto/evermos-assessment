@@ -77,3 +77,29 @@ func (q *Queries) GetUsers(ctx context.Context) ([]GetUsersRow, error) {
 	}
 	return items, nil
 }
+
+const updateUserById = `-- name: UpdateUserById :exec
+UPDATE "users"
+SET 
+    "email" = COALESCE($1, "email"),
+    "phone" = COALESCE($2, "phone"),
+    "password" = COALESCE($3, "password")
+WHERE "id" = $4
+`
+
+type UpdateUserByIdParams struct {
+	Email    string `db:"email"`
+	Phone    string `db:"phone"`
+	Password string `db:"password"`
+	ID       int64  `db:"id"`
+}
+
+func (q *Queries) UpdateUserById(ctx context.Context, arg UpdateUserByIdParams) error {
+	_, err := q.db.Exec(ctx, updateUserById,
+		arg.Email,
+		arg.Phone,
+		arg.Password,
+		arg.ID,
+	)
+	return err
+}

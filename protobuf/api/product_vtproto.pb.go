@@ -7,11 +7,10 @@ package commerce_api
 import (
 	binary "encoding/binary"
 	fmt "fmt"
-	io "io"
-	math "math"
-
 	protohelpers "github.com/planetscale/vtprotobuf/protohelpers"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	io "io"
+	math "math"
 )
 
 const (

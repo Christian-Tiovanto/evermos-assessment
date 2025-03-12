@@ -26,6 +26,7 @@ type Querier interface {
 	ReserveStock(ctx context.Context, arg ReserveStockParams) error
 	UpdateOrderStatus(ctx context.Context, arg UpdateOrderStatusParams) (UpdateOrderStatusRow, error)
 	UpdateProductStock(ctx context.Context, arg UpdateProductStockParams) error
+	UpdateUserById(ctx context.Context, arg UpdateUserByIdParams) error
 }
 
 var _ Querier = (*Queries)(nil)

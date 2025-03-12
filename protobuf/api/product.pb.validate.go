@@ -83,7 +83,7 @@ type ProductMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
 func (m ProductMultiError) Error() string {
-	var msgs []string
+	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
 	}
@@ -217,7 +217,7 @@ type GetProductsResponseMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
 func (m GetProductsResponseMultiError) Error() string {
-	var msgs []string
+	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
 	}
